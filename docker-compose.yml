@@ -1,0 +1,19 @@
+version: '3'
+services:
+  server:
+    image: server
+    build: .
+    ports:
+     - "8000:8000"
+    container_name: server
+    environment:
+      - NODE_ENV=production
+    external_links: 
+      - mongo
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    volumes:
+      - ~/data:/data/db
+    ports:
+      - "27017:27017"
